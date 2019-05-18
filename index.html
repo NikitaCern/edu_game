@@ -9,29 +9,29 @@
 </head>
 <body>
   <div class="container" id="main_body">
-    <p><span><strong>Skaitlu Tornis</strong></span></p>
+    <p><span><strong>$k@!tLu T0Rn!$</strong></span></p>
     <form @submit.prevent="recieve">
       <div class="slider_container">
-        <div>Augstums</div>
+        <div class="text">Augstums</div>
         <input type="range" min="1" max="100" value="1" step="1" class="slider"
                 id="height_input" oninput="height_output.value = height_input.value" v-model="height_input">
         <output id="height_output">1</output>
       </div>
     <br>
       <div class="slider_container">
-        <div>Operatoru Grutiba</div>
+        <div class="text">Operatoru Grutiba</div>
         <input type="range" min="1" max="6" value="1" step="1" class="slider"
                 id="operator_difficulty_input" oninput="operator_difficulty_output.value = operator_difficulty_input.value" v-model="difficulty_input">
         <output id="operator_difficulty_output">1</output>
       </div>
     <br>
       <div class="slider_container">
-        <div>Ciparu Skaits</div>
+        <div class="text">Ciparu Skaits</div>
         <input type="range" min="1" max="4" value="1" step="1" class="slider"
                 id="size_input" oninput="size_output.value = size_input.value" v-model="nr_of_chars">
         <output id="size_output">1</output>
       </div>
-    <a id="go_button" :href="'game.html?h='+height_input+'?d='+difficulty_input+'?l='+nr_of_chars">GO</a>
+    <a id="go_button" :href="'game.html?h='+height_input+'&d='+difficulty_input+'&l='+nr_of_chars">GO</a>
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
