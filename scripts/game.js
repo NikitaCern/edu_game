@@ -7,7 +7,6 @@ var app = new Vue({
         reverse: false,
         page_width: 0,
         page_height: 0,
-        blocks: null,
         canvas: null,
         context: null,
         frameNo: 0,
@@ -52,7 +51,7 @@ var app = new Vue({
     },
     methods: {
         addRect:function(){
-            while(this.tower.length<=this.blocks){
+            while(this.tower.length<=this.height_input){
                 this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas","Question"));
             }
         },
@@ -136,7 +135,8 @@ var app = new Vue({
                     this.tower[0].update(this.context);
                     this.context.fillStyle = this.score.time.color;
                     this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
-                    this.score.time.text = (clock.getTime() - startTime).toString();  
+                    var clockLocal = new Date();
+                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
                     this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
