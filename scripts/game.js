@@ -32,6 +32,11 @@ var app = new Vue({
             window.addEventListener("keyup", function(event) {
                 if (event.keyCode === 13) {
                     this.evaluate();
+                }else if (event.keyCode === 8) {
+                    this.tower[0].text = this.tower[0].text.substring(0, this.tower[0].text.length - 1);;
+                }else if(event.keyCode!=16){
+                    //alert(event.key);
+                    this.tower[0].text += event.key;
                 }
             }.bind(this));
             this.startGame()
@@ -40,7 +45,7 @@ var app = new Vue({
     methods: {
         addRect:function(){
             while(this.tower.length<=this.blocks){
-                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0));
+                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas","Question"));
             }
         },
         clear: function() {
@@ -75,7 +80,7 @@ var app = new Vue({
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
             document.getElementById("app").appendChild(this.canvas); 
-            this.tower.push(new RectangleText("green",this.page_width,80,0,0));
+            this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 10);
         },
@@ -97,9 +102,10 @@ var app = new Vue({
                     this.context.fillStyle = this.tower[i].color;
                     this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                 }
+                this.tower[0].update(this.context);
             }
             if(this.reverse==true){
-                if(this.tower[1].speed-9*parseFloat(this.tower[1].period/1000)<=0){
+                if(4-9*parseFloat(this.tower[1].period/1000)<=0){
                     this.pause = false;
                     this.reverse = false;
                     for(let i=1,len=this.tower.length;i<len;i++){
@@ -109,9 +115,10 @@ var app = new Vue({
                     this.clear();
                     this.context.fillStyle = this.tower[0].color;
                     this.context.fillRect(this.tower[0].x, this.tower[0].y, this.tower[0].width, this.tower[0].height);
+                    this.tower[0].update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
-                        this.tower[i].y -= this.tower[i].speed-9*parseFloat(this.tower[i].period/1000);
+                        this.tower[i].y -= 4-9*parseFloat(this.tower[i].period/1000);
                         this.context.fillStyle = this.tower[i].color;
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                     }
