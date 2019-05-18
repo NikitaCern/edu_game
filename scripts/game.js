@@ -148,8 +148,8 @@ var app = new Vue({
                 }
             }
         },
-        getRandomLimits: function(min, max){
-            return Math.floor(Math.random() * ( max - min ) + min);
+        getRandomLimits: function(max){
+            return Math.floor(Math.random() * Math.floor(max));
         },
         recieve: function() {
             var operator = ["+",
@@ -157,38 +157,39 @@ var app = new Vue({
                             "+-*",
                             "+-*/"];
             for (var i = 0; i < this.height_input; i++) {
-              var chosen_operator = operator[this.difficulty_input-1].charAt(this.getRandomLimits(0,this.difficulty_input-1));
+              var chosen_operator = operator[this.difficulty_input-1].charAt(this.getRandomLimits(this.difficulty_input));
               if(chosen_operator == "+"){
-                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
                 var quest = n+"+"+m+"=";
-                var answer = toString(n+m);
+                var answer = n+m;
               }
               if(chosen_operator == "-"){
-                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
                 if(n<m){
                   var temp = n;
                   n = m;
                   m=temp;
                 }
                 var quest = n+"-"+m+"=";
-                var answer = toString(n - m);
+                var answer = n - m;
               }
               if(chosen_operator == "*"){
-                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
+                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
                 var quest = n+"*"+m+"=";
-                var answer = toString(n*m);
+                var answer = n*m;
               }
               if(chosen_operator == "/"){
-                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = toString(n*this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1));
-                var  m = int(answer) / n;
+                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var answer = n*this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var  m = answer / n;
                 var quest = n+"/"+m+"=";
               }
               console.log(quest);
-              this.addRect()
+              console.log(answer);
+              this.addRect(quest, answer);
             }
         }
     }
