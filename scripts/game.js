@@ -118,7 +118,7 @@ var app = new Vue({
                 this.context.fillStyle = this.score.time.color;
                 this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
                 var clockLocal = new Date();
-                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
+                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                 this.score.time.update(this.context);
             }
             if(this.reverse==true){
@@ -136,7 +136,7 @@ var app = new Vue({
                     this.context.fillStyle = this.score.time.color;
                     this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
                     var clockLocal = new Date();
-                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
+                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                     this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
@@ -149,7 +149,7 @@ var app = new Vue({
             }
         },
         getRandomLimits: function(min, max){
-            return floor(Math.random() * ( max - min ) + min);
+            return Math.floor(Math.random() * ( max - min ) + min);
         },
         recieve: function() {
             var operator = ["+",
@@ -187,6 +187,7 @@ var app = new Vue({
                 var  m = int(answer) / n;
                 var quest = n+"/"+m+"=";
               }
+              console.log(quest);
               this.addRect()
             }
         }
