@@ -128,9 +128,10 @@ var app = new Vue({
                 this.context.fillStyle = this.score.rezult.color;
                 this.context.fillRect(this.score.rezult.x, this.score.rezult.y, this.score.rezult.width, this.score.rezult.height);
                 var clockLocal = new Date();
-                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
+                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(0)).toString();
                 this.score.time.update(this.context);
                 this.score.rezult.update(this.context);
+                if(this.tower.length==1) this.pause = true;
             }
             if(this.reverse==true){
                 if(4-9*parseFloat(this.tower[1].period/1000)<=0){
@@ -150,7 +151,7 @@ var app = new Vue({
                     this.context.fillRect(this.score.rezult.x, this.score.rezult.y, this.score.rezult.width, this.score.rezult.height);
                     this.score.rezult.update(this.context);
                     var clockLocal = new Date();
-                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
+                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(0)).toString();
                     this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
