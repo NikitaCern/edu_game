@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Tornis</title>
 </head>
 <body>
-
+  <div class="container" id="main_body">
+    <div class="title">Skaitlu Tornis</div>
+    <form @submit.prevent="recieve">
+      <div class="slider_container">
+        <div>Augstums</div>
+        <input type="range" min="1" max="100" value="1" step="1" class="slider"
+                id="height_input" oninput="height_output.value = height_input.value" v-model="height_input">
+        <output id="height_output">1</output>
+      </div>
+    <br>
+      <div class="slider_container">
+        <div>Operatoru Grutiba</div>
+        <input type="range" min="1" max="6" value="1" step="1" class="slider"
+                id="operator_difficulty_input" oninput="operator_difficulty_output.value = operator_difficulty_input.value" v-model="difficulty_input">
+        <output id="operator_difficulty_output">1</output>
+      </div>
+    <br>
+      <div class="slider_container">
+        <div>Ciparu Skaits</div>
+        <input type="range" min="1" max="4" value="1" step="1" class="slider"
+                id="size_input" oninput="size_output.value = size_input.value" v-model="nr_of_chars">
+        <output id="size_output">1</output>
+      </div>
+    <a id="go_button" :href="'game.html?h='+height_input+'?d='+difficulty_input+'?l='+nr_of_chars">GO</a>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 </html>

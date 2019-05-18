@@ -11,7 +11,7 @@ var app = new Vue({
         tower: [],
         interval: null,
         setting: {
-            
+
         }
     },
     created: function () {
@@ -34,17 +34,17 @@ var app = new Vue({
     methods: {
         start: function() {
             this.canvas = document.createElement("canvas");
-            this.canvas.width = this.page_width;                         
+            this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
-            document.getElementById("app").appendChild(this.canvas); 
+            document.getElementById("app").appendChild(this.canvas);
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 20);
         },
         resize: function() {
             this.page_width=$(window).width();
             this.page_height=$(window).height();
-            this.canvas.width = this.page_width;                         
+            this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
         },
         clear: function() {
@@ -57,7 +57,7 @@ var app = new Vue({
         },
         updateGameArea: function() {
             if(this.pause==false){
-                   
+
             }
         },
         drawcBlock: function(){
