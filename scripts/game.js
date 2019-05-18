@@ -57,8 +57,10 @@ var app = new Vue({
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         },
         evaluate: function(){
-            //if(this.tower.answer==)
-            this.explosion();
+            if(this.tower[1].answer==this.tower[0].text){
+                this.score.rezult.text=toString(parseInt(this.score.rezult.text)+1);
+                this.explosion();
+            }else this.score.time += 10000;
         },
         explosion: function(){
             if(this.tower.length==1) return;
@@ -117,9 +119,16 @@ var app = new Vue({
                 }
                 this.context.fillStyle = this.score.time.color;
                 this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
+                if(this.score.rezult.free==true){
+                    this.score.rezult.period+=10;
+                    this.score.rezult.collision(this.tower[0]);
+                }
+                this.context.fillStyle = this.score.rezult.color;
+                this.context.fillRect(this.score.rezult.x, this.score.rezult.y, this.score.rezult.width, this.score.rezult.height);
                 var clockLocal = new Date();
                 this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                 this.score.time.update(this.context);
+                this.score.rezult.update(this.context);
             }
             if(this.reverse==true){
                 if(4-9*parseFloat(this.tower[1].period/1000)<=0){
@@ -135,6 +144,9 @@ var app = new Vue({
                     this.tower[0].update(this.context);
                     this.context.fillStyle = this.score.time.color;
                     this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
+                    this.context.fillStyle = this.score.rezult.color;
+                    this.context.fillRect(this.score.rezult.x, this.score.rezult.y, this.score.rezult.width, this.score.rezult.height);
+                    this.score.rezult.update(this.context);
                     var clockLocal = new Date();
                     this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                     this.score.time.update(this.context);
@@ -188,7 +200,7 @@ var app = new Vue({
                 var quest = n+"/"+m+"=";
               }
               console.log(quest);
-              this.addRect()
+              //this.addRect()
             }
         }
     }
