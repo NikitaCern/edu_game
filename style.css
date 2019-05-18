@@ -4,11 +4,17 @@ body{
 p{
   text-align: center;
   color: #F2EDE4;
-  padding-top:10%;
-  padding-bottom:10%;
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #253840;
   font-size: 50pt;
+  font-family: calibri, sans-serif;"
+}
+.text{
+  font-weight: 1000;
+  text-align: center;
+  color: #F2EDE4;
+  -webkit-text-stroke-color: #253840;
+  font-size: 16pt;
   font-family: calibri, sans-serif;"
 }
 .container{
@@ -21,9 +27,23 @@ p{
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #A6978A;
+  border-radius: 50px;
 }
-.go_button{
-  align-self: flex-end;
+#go_button{
+  margin-left: 50%;
+  margin-right: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background-color:#F2EDE4;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  text-align: center;
+  color:#253840;
+  font-size: 16pt;
+  font-family: calibri, sans-serif;"
 }
 .slider_container{
     width:auto;
@@ -41,6 +61,11 @@ output{
   height: 50px;
   line-height: 50px;
   text-align: center;
+  font-weight: bold;
+  text-align: center;
+  color:#253840;
+  font-size: 16pt;
+  font-family: calibri, sans-serif;"
 }
 input[type=range] {
   padding-left: 5%;

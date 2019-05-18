@@ -7,9 +7,7 @@ var app = new Vue({
     },
     methods: {
         recieve: function() {
-          console.log(this.height_input)
-          console.log(this.difficulty_input)
-          console.log(this.nr_of_chars)
+          
         }
     }
 })
