@@ -5,7 +5,7 @@ var app = new Vue({
         reverse: false,
         page_width: 0,
         page_height: 0,
-        myParam: null,
+        blocks: null,
         canvas: null,
         context: null,
         frameNo: 0,
@@ -18,7 +18,7 @@ var app = new Vue({
     created: function () {
         var url = new URL(window.location);
         const urlParams = new URLSearchParams(url.search);
-        myParam = urlParams.get('myParam');
+        this.blocks = urlParams.get('h');
     },
     computed: {
     },
@@ -31,7 +31,7 @@ var app = new Vue({
             window.addEventListener('resize', this.resize, true);
             window.addEventListener("keyup", function(event) {
                 if (event.keyCode === 13) {
-                    this.explosion();
+                    this.evaluate();
                 }
             }.bind(this));
             this.startGame()
@@ -39,12 +39,16 @@ var app = new Vue({
     },
     methods: {
         addRect:function(){
-            while(this.tower.length*120-200<=this.page_height){
-                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,4));
+            while(this.tower.length<=this.blocks){
+                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0));
             }
         },
         clear: function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        },
+        evaluate: function(){
+            //if(this.tower.answer==)
+            this.explosion();
         },
         explosion: function(){
             if(this.tower.length==1) return;
@@ -71,7 +75,7 @@ var app = new Vue({
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
             document.getElementById("app").appendChild(this.canvas); 
-            this.tower.push(new Rectangle("green",this.page_width,80,0,0,4));
+            this.tower.push(new RectangleText("green",this.page_width,80,0,0));
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 10);
         },
