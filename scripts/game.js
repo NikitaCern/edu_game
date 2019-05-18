@@ -118,7 +118,7 @@ var app = new Vue({
                 this.context.fillStyle = this.score.time.color;
                 this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
                 var clockLocal = new Date();
-                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
+                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                 this.score.time.update(this.context);
             }
             if(this.reverse==true){
@@ -136,7 +136,7 @@ var app = new Vue({
                     this.context.fillStyle = this.score.time.color;
                     this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
                     var clockLocal = new Date();
-                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
+                    this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();
                     this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
@@ -159,14 +159,14 @@ var app = new Vue({
             for (var i = 0; i < this.height_input; i++) {
               var chosen_operator = operator[this.difficulty_input-1].charAt(getRandomLimits(0,this.difficulty_input-1));
               if(chosen_operator == "+"){
-                var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
                 var quest = n+"+"+m+"=";
                 var answer = toString(n+m);
               }
               if(chosen_operator == "-"){
-                var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
+                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
                 if(n<m){
                   var temp = n;
                   n = m;
@@ -176,18 +176,19 @@ var app = new Vue({
                 var answer = toString(n - m);
               }
               if(chosen_operator == "*"){
-                var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
+                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
+                var m = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
                 var quest = n+"*"+m+"=";
                 var answer = toString(n*m);
               }
               if(chosen_operator == "/"){
-                var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = toString(n*getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1));
+                var n = this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
+                var answer = toString(n*this.getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1));
                 var  m = int(answer) / n;
                 var quest = n+"/"+m+"=";
               }
-              addRect()
+              console.log(quest);
+              this.addRect()
             }
         }
     }
