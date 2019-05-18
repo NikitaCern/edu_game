@@ -12,7 +12,7 @@ var app = new Vue({
         tower: [],
         interval: null,
         setting: {
-            
+
         }
     },
     created: function () {
@@ -60,7 +60,7 @@ var app = new Vue({
         resize: function() {
             this.page_width=$(window).width();
             this.page_height=$(window).height();
-            this.canvas.width = this.page_width;                         
+            this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
         },
         start: function() {
@@ -80,6 +80,7 @@ var app = new Vue({
         },
         updateGameArea: function() {
             if(this.pause==false){
+<<<<<<< HEAD
                 this.clear();
                 for(let i=0,len=this.tower.length;i<len;i++){
                     if(this.tower[i].free==true){
@@ -110,6 +111,9 @@ var app = new Vue({
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                     }
                 }
+=======
+
+>>>>>>> bdbda1c48a424892fc7a45883031b4e9afb244d2
             }
         },
     }
