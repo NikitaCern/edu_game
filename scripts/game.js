@@ -108,6 +108,7 @@ var app = new Vue({
                     }
                     this.context.fillStyle = this.tower[i].color;
                     this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
+                    this.tower[i].update(this.context);
                 }
                 if(this.score.time.free==true){
                     this.score.time.period+=10;
@@ -118,7 +119,6 @@ var app = new Vue({
                 
                 this.score.time.text = (clock.getTime() - startTime).toString();  
                 this.score.time.update(this.context);
-                this.tower[0].update(this.context);
             }
             if(this.reverse==true){
                 if(4-9*parseFloat(this.tower[1].period/1000)<=0){
@@ -141,6 +141,7 @@ var app = new Vue({
                         this.tower[i].y -= 4-9*parseFloat(this.tower[i].period/1000);
                         this.context.fillStyle = this.tower[i].color;
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
+                        this.tower[i].update(this.context);
                     }
                 }
             }
