@@ -40,7 +40,7 @@ var app = new Vue({
     methods: {
         addRect:function(){
             while(this.tower.length*120-200<=this.page_height){
-                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,4));
+                this.tower.push(new Rectangle('#586E73',600,120,this.page_width/2-300,0,4));
             }
         },
         clear: function() {
@@ -67,10 +67,10 @@ var app = new Vue({
         },
         start: function() {
             this.canvas = document.createElement("canvas");
-            this.canvas.width = this.page_width;                         
+            this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
-            document.getElementById("app").appendChild(this.canvas); 
+            document.getElementById("app").appendChild(this.canvas);
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,4));
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 10);
