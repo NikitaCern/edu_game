@@ -86,7 +86,7 @@ var app = new Vue({
             this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
-            document.getElementById("app").appendChild(this.canvas); 
+            document.getElementById("app").appendChild(this.canvas);
             this.score.time = (new Rectangle("green",200,160,20,-80,"30px", "Consolas","0"));
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
             this.frameNo = 0;
@@ -161,7 +161,8 @@ var app = new Vue({
               if(chosen_operator == "+"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
                 var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var answer = n+m;
+                var quest = n+"+"+m+"=";
+                var answer = toString(n+m);
               }
               if(chosen_operator == "-"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
@@ -171,18 +172,22 @@ var app = new Vue({
                   n = m;
                   m=temp;
                 }
-                var answer = n - m;
+                var quest = n+"-"+m+"=";
+                var answer = toString(n - m);
               }
               if(chosen_operator == "*"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
                 var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = n*m;
+                var quest = n+"*"+m+"=";
+                var answer = toString(n*m);
               }
               if(chosen_operator == "/"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = n*getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var  m = answer / n;
+                var answer = toString(n*getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1));
+                var  m = int(answer) / n;
+                var quest = n+"/"+m+"=";
               }
+              addRect()
             }
         }
     }
