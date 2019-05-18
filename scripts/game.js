@@ -39,7 +39,9 @@ var app = new Vue({
     },
     methods: {
         addRect:function(){
-            this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,4));
+            while(this.tower.length*120-200<=this.page_height){
+                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,4));
+            }
         },
         clear: function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -80,7 +82,6 @@ var app = new Vue({
         },
         updateGameArea: function() {
             if(this.pause==false){
-<<<<<<< HEAD
                 this.clear();
                 for(let i=0,len=this.tower.length;i<len;i++){
                     if(this.tower[i].free==true){
@@ -111,9 +112,6 @@ var app = new Vue({
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                     }
                 }
-=======
-
->>>>>>> bdbda1c48a424892fc7a45883031b4e9afb244d2
             }
         },
     }
