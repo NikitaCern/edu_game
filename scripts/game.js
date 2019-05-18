@@ -1,3 +1,5 @@
+var clock = new Date();
+var startTime = clock.getTime();
 var app = new Vue({
     el: '#app',
     data: {
@@ -11,8 +13,9 @@ var app = new Vue({
         frameNo: 0,
         tower: [],
         interval: null,
-        setting: {
-
+        score: {
+            time: null,
+            rezult: null
         }
     },
     created: function () {
@@ -44,13 +47,8 @@ var app = new Vue({
     },
     methods: {
         addRect:function(){
-<<<<<<< HEAD
             while(this.tower.length<=this.blocks){
                 this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas","Question"));
-=======
-            while(this.tower.length*120-200<=this.page_height){
-                this.tower.push(new Rectangle('#586E73',600,120,this.page_width/2-300,0,4));
->>>>>>> a9ed3264920d2b7e9e99ab2beda82bbc4ac64910
             }
         },
         clear: function() {
@@ -84,13 +82,9 @@ var app = new Vue({
             this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
-<<<<<<< HEAD
             document.getElementById("app").appendChild(this.canvas); 
+            this.score.time = (new Rectangle("green",200,160,20,-80,"30px", "Consolas","0"));
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
-=======
-            document.getElementById("app").appendChild(this.canvas);
-            this.tower.push(new Rectangle("green",this.page_width,80,0,0,4));
->>>>>>> a9ed3264920d2b7e9e99ab2beda82bbc4ac64910
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 10);
         },
@@ -112,6 +106,14 @@ var app = new Vue({
                     this.context.fillStyle = this.tower[i].color;
                     this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                 }
+                if(this.score.time.free==true){
+                    this.score.time.period+=10;
+                    this.score.time.collision(this.tower[0]);
+                }
+                this.context.fillStyle = this.score.time.color;
+                this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
+                this.score.time.text = (clock.getTime() - startTime).toString();  
+                this.score.time.update(this.context);
                 this.tower[0].update(this.context);
             }
             if(this.reverse==true){
@@ -126,6 +128,10 @@ var app = new Vue({
                     this.context.fillStyle = this.tower[0].color;
                     this.context.fillRect(this.tower[0].x, this.tower[0].y, this.tower[0].width, this.tower[0].height);
                     this.tower[0].update(this.context);
+                    this.context.fillStyle = this.score.time.color;
+                    this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
+                    this.score.time.text = (clock.getTime() - startTime).toString();  
+                    this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
                         this.tower[i].y -= 4-9*parseFloat(this.tower[i].period/1000);
