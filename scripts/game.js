@@ -51,7 +51,7 @@ var app = new Vue({
     methods: {
         addRect:function(){
             while(this.tower.length<=this.blocks){
-                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas","Question"));
+                this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas", this.quest , this.answer));
             }
         },
         clear: function() {
@@ -85,7 +85,7 @@ var app = new Vue({
             this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
-            document.getElementById("app").appendChild(this.canvas); 
+            document.getElementById("app").appendChild(this.canvas);
             this.score.time = (new Rectangle("green",200,160,20,-80,"30px", "Consolas","0"));
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
             this.frameNo = 0;
@@ -108,6 +108,7 @@ var app = new Vue({
                     }
                     this.context.fillStyle = this.tower[i].color;
                     this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
+                    this.tower[i].update(this.context);
                 }
                 if(this.score.time.free==true){
                     this.score.time.period+=10;
@@ -115,10 +116,9 @@ var app = new Vue({
                 }
                 this.context.fillStyle = this.score.time.color;
                 this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
-                
-                this.score.time.text = (clock.getTime() - startTime).toString();  
+
+                this.score.time.text = (clock.getTime() - startTime).toString();
                 this.score.time.update(this.context);
-                this.tower[0].update(this.context);
             }
             if(this.reverse==true){
                 if(4-9*parseFloat(this.tower[1].period/1000)<=0){
@@ -134,13 +134,14 @@ var app = new Vue({
                     this.tower[0].update(this.context);
                     this.context.fillStyle = this.score.time.color;
                     this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
-                    this.score.time.text = (clock.getTime() - startTime).toString();  
+                    this.score.time.text = (clock.getTime() - startTime).toString();
                     this.score.time.update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
                         this.tower[i].y -= 4-9*parseFloat(this.tower[i].period/1000);
                         this.context.fillStyle = this.tower[i].color;
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
+                        this.tower[i].update(this.context);
                     }
                 }
             }
@@ -158,7 +159,8 @@ var app = new Vue({
               if(chosen_operator == "+"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
                 var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
-                var answer = n+m;
+                var quest = n+"+"+m+"=";
+                var answer = toString(n+m);
               }
               if(chosen_operator == "-"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars+1)-1);
@@ -168,18 +170,22 @@ var app = new Vue({
                   n = m;
                   m=temp;
                 }
-                var answer = n - m;
+                var quest = n+"-"+m+"=";
+                var answer = toString(n - m);
               }
               if(chosen_operator == "*"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
                 var m = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = n*m;
+                var quest = n+"*"+m+"=";
+                var answer = toString(n*m);
               }
               if(chosen_operator == "/"){
                 var n = getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var answer = n*getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1);
-                var  m = answer / n;
+                var answer = toString(n*getRandomLimits(0, Math.pow(10 , this.nr_of_chars)-1));
+                var  m = int(answer) / n;
+                var quest = n+"/"+m+"=";
               }
+              addRect()
             }
         }
     }

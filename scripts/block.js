@@ -1,11 +1,11 @@
 class Rectangle {
-    constructor(color, width, height, x, y,size,font,text) {
+    constructor(color, width, height, x, y,size,font,text,answer = null) {
         this.height = height;
         this.width = width;
         this.color = color;
         this.period = 0;
         this.text = text;
-        this.answer = null;
+        this.answer = answer;
         this.font = font;
         this.size = size;
         this.x = x;
