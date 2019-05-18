@@ -24,7 +24,9 @@ var app = new Vue({
     created: function () {
         var url = new URL(window.location);
         const urlParams = new URLSearchParams(url.search);
-        this.blocks = urlParams.get('h');
+        this.height_input = urlParams.get('h');
+        this.difficulty_input = urlParams.get('d');
+        this.nr_of_chars = urlParams.get('l');
     },
     computed: {
     },
@@ -116,8 +118,8 @@ var app = new Vue({
                 }
                 this.context.fillStyle = this.score.time.color;
                 this.context.fillRect(this.score.time.x, this.score.time.y, this.score.time.width, this.score.time.height);
-                
-                this.score.time.text = (clock.getTime() - startTime).toString();  
+                var clockLocal = new Date();
+                this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(1)).toString();  
                 this.score.time.update(this.context);
             }
             if(this.reverse==true){
