@@ -44,8 +44,13 @@ var app = new Vue({
     },
     methods: {
         addRect:function(){
+<<<<<<< HEAD
             while(this.tower.length<=this.blocks){
                 this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas","Question"));
+=======
+            while(this.tower.length*120-200<=this.page_height){
+                this.tower.push(new Rectangle('#586E73',600,120,this.page_width/2-300,0,4));
+>>>>>>> a9ed3264920d2b7e9e99ab2beda82bbc4ac64910
             }
         },
         clear: function() {
@@ -76,11 +81,16 @@ var app = new Vue({
         },
         start: function() {
             this.canvas = document.createElement("canvas");
-            this.canvas.width = this.page_width;                         
+            this.canvas.width = this.page_width;
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
+<<<<<<< HEAD
             document.getElementById("app").appendChild(this.canvas); 
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
+=======
+            document.getElementById("app").appendChild(this.canvas);
+            this.tower.push(new Rectangle("green",this.page_width,80,0,0,4));
+>>>>>>> a9ed3264920d2b7e9e99ab2beda82bbc4ac64910
             this.frameNo = 0;
             this.interval = setInterval(this.updateGameArea, 10);
         },

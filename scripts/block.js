@@ -5,6 +5,7 @@ class Rectangle {
         this.color = color;
         this.period = 0;
         this.text = text;
+        this.answer = null;
         this.font = font;
         this.size = size;
         this.x = x;
