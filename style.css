@@ -18,7 +18,7 @@ p{
 }
 .text{
   font-weight: 1000;
-  text-align: center;
+  text-align: right;
   color: var(--color3);
   -webkit-text-stroke-color: var(--color5);
   font-size: 16pt;
