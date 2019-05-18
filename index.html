@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container" id="main_body">
-    <p><span><strong>$k@!tLu T0Rn!$</strong></span></p>
+    <p><span><strong>Skaitļu Tornis</strong></span></p>
     <form @submit.prevent="recieve">
       <div class="slider_container">
         <div class="text">Augstums</div>
@@ -19,7 +19,7 @@
       </div>
     <br>
       <div class="slider_container">
-        <div class="text">Operatoru Grutiba</div>
+        <div class="text">Operātoru Grūtība</div>
         <input type="range" min="1" max="6" value="1" step="1" class="slider"
                 id="operator_difficulty_input" oninput="operator_difficulty_output.value = operator_difficulty_input.value" v-model="difficulty_input">
         <output id="operator_difficulty_output">1</output>
