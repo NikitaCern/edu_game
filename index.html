@@ -19,7 +19,6 @@
       </div>
     <br>
       <div class="slider_container">
-<<<<<<< HEAD
         <div class="text">Sarezgitiba</div>
         <select name="Sarezgitiba" v-model="difficulty_input" id="difficulty_input">
           <option value="0">Loti Viegli</option>
@@ -28,12 +27,6 @@
           <option value="3">Sarezgiti</option>
           <option value="4">Loti Sarezgiti</option>
         </select>
-=======
-        <div class="text">Operātoru Grūtība</div>
-        <input type="range" min="1" max="4" value="1" step="1" class="slider"
-                id="operator_difficulty_input" oninput="operator_difficulty_output.value = operator_difficulty_input.value" v-model="difficulty_input">
-        <output id="operator_difficulty_output">1</output>
->>>>>>> aa66eebde25941cb1c59bf4fa6f1c64ceb61d821
       </div>
     <a id="go_button" :href="'game.html?h='+height_input+'&d='+difficulty_input">GO</a>
     </form>

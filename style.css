@@ -11,7 +11,7 @@ body{
 p{
   text-align: center;
   color: var(--color3);
-  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: var(--color5);
   font-size: 50pt;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -19,6 +19,7 @@ p{
 .text{
   font-weight: 1000;
   text-align: right;
+  margin-right: 10px;
   color: var(--color3);
   -webkit-text-stroke-color: var(--color5);
   font-size: 16pt;
@@ -34,7 +35,7 @@ p{
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color2);
-  border-radius: 50px;
+  border-radius: 50px 300px;
 }
 #go_button{
   display: inline-block;
@@ -43,7 +44,7 @@ p{
   width: 100px;
   height: 50px;
   line-height: 50px;
-  text-align: center;
+  float: right;
   font-weight: bold;
   text-align: center;
   color:var(--color5);
@@ -163,12 +164,12 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: var(--color5);
 }
-.modal-body-priv { 
+.modal-body-priv {
   position: absolute;
   width: 400px;
   height: 300px;
   top: 100px;
-  left: calc(50% - 200px); 
+  left: calc(50% - 200px);
   border-radius: 20px;
   border: 2px solid rgba(80, 19, 200, 0.6);
 }
