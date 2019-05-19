@@ -206,10 +206,10 @@ var app = new Vue({
                             [3,3]
                           ];
             for (var i = 0; i < this.height_input; i++) {
-              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(difficulty[this.difficulty_input][0]));
+              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(difficulty[this.difficulty_input][0]+1));
               var nr_of_chars = difficulty[this.difficulty_input][1];
-              console.log(operator[difficulty[this.difficulty_input][0]])
-              console.log(nr_of_chars)
+              //console.log(operator[difficulty[this.difficulty_input][0]])
+              //console.log(nr_of_chars)
               if(chosen_operator == "+"){
                 var n = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
@@ -239,8 +239,8 @@ var app = new Vue({
                 var  answer=n/m;
                 var quest = n+"/"+m+"=";
               }
-              console.log(quest);
-              console.log(answer);
+              //console.log(quest);
+              //console.log(answer);
               this.addRect(quest, answer);
             }
         }
