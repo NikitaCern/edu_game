@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="style.css">
         <link href="assets/css/main.css" rel="stylesheet"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <!-- <script src="scripts/script1.js"></script> -->
         <!-- <script src="scripts/script2.js"></script> -->
         <!-- <script src="scripts/drawRect.js"></script>
@@ -15,10 +16,24 @@
     </head>
 
     <body>
-        <div id="app"></div>
+        <div id="app" v-cloak>
+    <div v-if="pause==true && reverse==false" class="modal-body-priv py-2 px-1">
+        <div class="container-fluid" style="height: 200px;">
+            <div class="row">
+                <div class="col-md-6 text-left">Uzdevumi minūtē:</div>
+                <div class="col-md-6 text-right">{{ perSecond }}</div>
+            </div>
+        </div>
+        <div class="container-fluid" style="height: 80px">
+            <a href="index.html"><img src="assets/refresh.svg" alt="refresh"></a>
+        </div>
+    </div>
+</div>
         <!--p>Use the ACCELERATE button to stay in the air</p>
         <p>How long can you stay alive?</p-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="scripts/block.js"></script>
         <script src="scripts/game.js"></script>
     </body>

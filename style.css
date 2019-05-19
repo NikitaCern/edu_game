@@ -163,3 +163,13 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: var(--color5);
 }
+.modal-body-priv { 
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  top: 100px;
+  left: calc(50% - 200px); 
+  border-radius: 20px;
+  border: 2px solid rgba(80, 19, 200, 0.6);
+}
+[v-cloak] {display: none}
