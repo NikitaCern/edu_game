@@ -43,11 +43,6 @@ var app = new Vue({
             window.addEventListener("keyup", function(event) {
                 if (event.keyCode === 13) {
                     this.evaluate();
-                }else if (event.keyCode === 8) {
-                    this.tower[0].text = this.tower[0].text.substring(0, this.tower[0].text.length - 1);;
-                }else if((event.keyCode>=48 && event.keyCode<=57) || (event.keyCode>=97 && event.keyCode<=205)){
-                    //alert(event.key);
-                    this.tower[0].text += event.key;
                 }
             }.bind(this));
             this.startGame()
@@ -55,7 +50,7 @@ var app = new Vue({
     },
     methods: {
         addRect:function(question, answer){
-            this.tower.push(new Rectangle("red",600,120,this.page_width/2-300,0,"30px", "Consolas",question,answer));
+            this.tower.push(new Rectangle("#A6978A",600,120,this.page_width/2-300,0,"30px", "Consolas",question,answer));
         },
         clear: function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -96,11 +91,11 @@ var app = new Vue({
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
             document.getElementById("app").appendChild(this.canvas);
-            this.lable[0] = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","Punkti"));
-            this.score.rezult = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","0"));
-            this.lable[1] = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","Laiks"));
-            this.score.time = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","0"));
-            this.tower.push(new Rectangle("green",this.page_width,100,0,this.page_height-100,"30px", "Consolas",""));
+            this.lable[0] = (new Rectangle("#253840",130,80,this.page_width-170,-80,"20px", "Consolas","Punkti"));
+            this.score.rezult = (new Rectangle("#586E73",130,100,this.page_width-170,-80,"30px", "Consolas","0"));
+            this.lable[1] = (new Rectangle("#253840",130,80,20,-80,"20px", "Consolas","Laiks"));
+            this.score.time = (new Rectangle("#586E73",130,100,20,-80,"30px", "Consolas","0"));
+            this.tower.push(new Rectangle("#253840",this.page_width,200,0,this.page_height-100,"30px", "Consolas",""));
             this.frameNo = 0;
             this.recieve();
             this.interval = setInterval(this.updateGameArea, 10);
@@ -156,10 +151,10 @@ var app = new Vue({
                 this.lable[1].update(this.context);
                 
                 this.context.beginPath();
-                this.context.moveTo(this.page_width/2-307,this.page_height-100);
-                this.context.lineTo(this.page_width/2-307,this.page_height-220);
-                this.context.lineTo(this.page_width/2+307,this.page_height-220);
-                this.context.lineTo(this.page_width/2+307,this.page_height-100);
+                this.context.moveTo(this.page_width/2-306,this.page_height-200);
+                this.context.lineTo(this.page_width/2-306,this.page_height-320);
+                this.context.lineTo(this.page_width/2+306,this.page_height-320);
+                this.context.lineTo(this.page_width/2+306,this.page_height-200);
                 this.context.closePath();
                 this.context.strokeStyle="blue";
                 this.context.lineWidth = 15;
@@ -231,10 +226,10 @@ var app = new Vue({
                             [3,3]
                           ];
             for (var i = 0; i < this.height_input; i++) {
-              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(0));
+              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(difficulty[this.difficulty_input][0]+1));
               var nr_of_chars = difficulty[this.difficulty_input][1];
-              console.log(operator[difficulty[this.difficulty_input][0]])
-              console.log(nr_of_chars)
+              //console.log(operator[difficulty[this.difficulty_input][0]])
+              //console.log(nr_of_chars)
               if(chosen_operator == "+"){
                 var n = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
@@ -264,8 +259,8 @@ var app = new Vue({
                 var  answer=n/m;
                 var quest = n+"/"+m+"=";
               }
-              console.log(quest);
-              console.log(answer);
+              //console.log(quest);
+              //console.log(answer);
               this.addRect(quest, answer);
             }
         }
