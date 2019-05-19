@@ -16,9 +16,9 @@
     </head>
 
     <body>
-        <div id="app" v-cloak>
+        <div id="app" v-cloak :class="punishmentStart==true ? 'punish' : rewardStart==true ? 'reward' : ''">
             <input v-if="reverse!=false || pause!=true" type="text" class="myAnswer" v-model="myAnswer" autofocus>
-            <button class="myAnswer2" @click="evaluate">GO</button>
+            <button v-if="reverse!=false || pause!=true" class="myAnswer2" @click="evaluate">GO</button>
             <div v-if="pause==true && reverse==false" class="modal-body-priv py-2 px-1">
                 <div class="container-fluid" style="height: 200px;">
                     <div class="row">

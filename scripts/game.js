@@ -9,6 +9,8 @@ var app = new Vue({
         page_height: 0,
         canvas: null,
         context: null,
+        punishmentStart: false,
+        rewardStart: false,
         frameNo: 0,
         tower: [],
         interval: null,
@@ -61,7 +63,15 @@ var app = new Vue({
                 this.score.rezult.text=(parseInt(this.score.rezult.text)+1).toString();
                 this.explosion();
                 this.tower[0].text="";
-            }else startTime-=10000;
+                this.rewardStart = true;
+            }else{
+                this.punishmentStart=true;
+            }
+            setTimeout(function(){
+                this.punishmentStart=false;
+                this.rewardStart=false;
+            }.bind(this),600)
+
         },
         explosion: function(){
             if(this.tower.length==1) return;
@@ -151,10 +161,10 @@ var app = new Vue({
                 this.lable[1].update(this.context);
                 
                 this.context.beginPath();
-                this.context.moveTo(this.page_width/2-306,this.page_height-200);
-                this.context.lineTo(this.page_width/2-306,this.page_height-320);
-                this.context.lineTo(this.page_width/2+306,this.page_height-320);
-                this.context.lineTo(this.page_width/2+306,this.page_height-200);
+                this.context.moveTo(this.page_width/2-305,this.page_height-200);
+                this.context.lineTo(this.page_width/2-305,this.page_height-320);
+                this.context.lineTo(this.page_width/2+305,this.page_height-320);
+                this.context.lineTo(this.page_width/2+305,this.page_height-200);
                 this.context.closePath();
                 this.context.strokeStyle="blue";
                 this.context.lineWidth = 15;
@@ -196,10 +206,10 @@ var app = new Vue({
                         this.tower[i].update(this.context);
                     }
                     this.context.beginPath();
-                    this.context.moveTo(this.page_width/2-307,this.page_height-100);
-                    this.context.lineTo(this.page_width/2-307,this.page_height-220);
-                    this.context.lineTo(this.page_width/2+307,this.page_height-220);
-                    this.context.lineTo(this.page_width/2+307,this.page_height-100);
+                    this.context.moveTo(this.page_width/2-305,this.page_height-200);
+                    this.context.lineTo(this.page_width/2-305,this.page_height-320);
+                    this.context.lineTo(this.page_width/2+305,this.page_height-320);
+                    this.context.lineTo(this.page_width/2+305,this.page_height-200);
                     this.context.closePath();
                     this.context.lineWidth = 15;
                     this.context.strokeStyle="blue";
