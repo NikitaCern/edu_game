@@ -9,6 +9,8 @@ var app = new Vue({
         page_height: 0,
         canvas: null,
         context: null,
+        punishmentStart: false,
+        rewardStart: false,
         frameNo: 0,
         tower: [],
         interval: null,
@@ -61,7 +63,15 @@ var app = new Vue({
                 this.score.rezult.text=(parseInt(this.score.rezult.text)+1).toString();
                 this.explosion();
                 this.tower[0].text="";
-            }else startTime-=10000;
+                this.rewardStart = true;
+            }else{
+                this.punishmentStart=true;
+            }
+            setTimeout(function(){
+                this.punishmentStart=false;
+                this.rewardStart=false;
+            }.bind(this),600)
+
         },
         explosion: function(){
             if(this.tower.length==1) return;
