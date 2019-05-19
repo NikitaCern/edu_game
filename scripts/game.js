@@ -19,7 +19,8 @@ var app = new Vue({
         height_input:1,
         difficulty_input:1,
         nr_of_chars:1,
-        lable: [null,null]
+        lable: [null,null],
+        description: "Ievadiet naturālu skaitli un spiediet Enter, lai atbildētu uz zemāko uzdevumu"
     },
     created: function () {
         var url = new URL(window.location);
@@ -100,7 +101,7 @@ var app = new Vue({
             this.score.rezult = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","0"));
             this.lable[1] = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","Laiks"));
             this.score.time = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","0"));
-            this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
+            this.tower.push(new Rectangle("green",this.page_width,100,0,this.page_height-100,"30px", "Consolas","",null,this.description));
             this.frameNo = 0;
             this.recieve();
             this.interval = setInterval(this.updateGameArea, 10);
