@@ -19,6 +19,7 @@ var app = new Vue({
         height_input:1,
         difficulty_input:1,
         nr_of_chars:1,
+        lable: [null,null]
     },
     created: function () {
         var url = new URL(window.location);
@@ -28,6 +29,9 @@ var app = new Vue({
         this.nr_of_chars = urlParams.get('l');
     },
     computed: {
+        perSecond() {
+            return (parseFloat(this.score.rezult.text)/parseFloat(this.score.time.text)).toFixed(1)
+        }
     },
     beforeUpdate: function(){
     },
@@ -41,7 +45,7 @@ var app = new Vue({
                     this.evaluate();
                 }else if (event.keyCode === 8) {
                     this.tower[0].text = this.tower[0].text.substring(0, this.tower[0].text.length - 1);;
-                }else if(event.keyCode>=48 && event.keyCode<=57){
+                }else if((event.keyCode>=48 && event.keyCode<=57) || (event.keyCode>=97 && event.keyCode<=205)){
                     //alert(event.key);
                     this.tower[0].text += event.key;
                 }
@@ -69,6 +73,9 @@ var app = new Vue({
             if(this.tower.length>2){
                 this.pause = true;
                 this.reverse = true;
+            }else{
+                this.pause = false;
+                this.reverse = false;
             }
             for(let i=2,len=this.tower.length;i<len;i++){
                 this.tower[i-1] = this.tower[i];
@@ -89,7 +96,9 @@ var app = new Vue({
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
             document.getElementById("app").appendChild(this.canvas);
+            this.lable[0] = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","Punkti"));
             this.score.rezult = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","0"));
+            this.lable[1] = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","Laiks"));
             this.score.time = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","0"));
             this.tower.push(new Rectangle("green",this.page_width,80,0,0,"30px", "Consolas",""));
             this.frameNo = 0;
@@ -131,6 +140,20 @@ var app = new Vue({
                 this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(0)).toString();
                 this.score.time.update(this.context);
                 this.score.rezult.update(this.context);
+                if(this.lable[0].free==true){
+                    this.lable[0].period+=10;
+                    this.lable[0].collision(this.score.rezult);
+                }
+                this.context.fillStyle = this.lable[0].color;
+                this.context.fillRect(this.lable[0].x, this.lable[0].y, this.lable[0].width, this.lable[0].height);
+                this.lable[0].update(this.context);
+                if(this.lable[1].free==true){
+                    this.lable[1].period+=10;
+                    this.lable[1].collision(this.score.time);
+                }
+                this.context.fillStyle = this.lable[1].color;
+                this.context.fillRect(this.lable[1].x, this.lable[1].y, this.lable[1].width, this.lable[1].height);
+                this.lable[1].update(this.context);
                 if(this.tower.length==1) this.pause = true;
             }
             if(this.reverse==true){
@@ -153,6 +176,12 @@ var app = new Vue({
                     var clockLocal = new Date();
                     this.score.time.text = (((clockLocal.getTime() - startTime)/1000).toFixed(0)).toString();
                     this.score.time.update(this.context);
+                    this.context.fillStyle = this.lable[0].color;
+                    this.context.fillRect(this.lable[0].x, this.lable[0].y, this.lable[0].width, this.lable[0].height);
+                    this.lable[0].update(this.context);
+                    this.context.fillStyle = this.lable[1].color;
+                    this.context.fillRect(this.lable[1].x, this.lable[1].y, this.lable[1].width, this.lable[1].height);
+                    this.lable[1].update(this.context);
                     for(let i=1,len=this.tower.length;i<len;i++){
                         this.tower[i].period+=10;
                         this.tower[i].y -= 4-9*parseFloat(this.tower[i].period/1000);

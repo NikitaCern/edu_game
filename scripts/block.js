@@ -28,7 +28,7 @@ class Rectangle {
             if(other.free == false)this.free = false;
             return;
         }
-        this.y += 20*parseFloat(this.period/1000);
+        this.y += 40*parseFloat(this.period/1000);
     }
     collisionGround(height){
         if(this.y + this.height > height){
@@ -36,6 +36,6 @@ class Rectangle {
             this.free = false;
             return;
         }
-        this.y += 20*parseFloat(this.period/1000);
+        this.y += 40*parseFloat(this.period/1000);
     } 
 }
