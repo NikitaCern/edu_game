@@ -15,13 +15,14 @@ class Rectangle {
     }
     update(ctx) {
         if(this.description!=""){
-            ctx.font = "20px " + this.font;
-            ctx.fillStyle = "black";
-            ctx.fillText(this.description, this.x + 20, this.y + this.height/2+6);
+            ctx.font = "30px " + this.font;
+            ctx.fillStyle = "#D9CBBF";
+            ctx.fillText(this.description, this.x + 30, this.y + this.height/2+6);
         }
-        ctx.font = this.size + " " + this.font;
-        ctx.fillStyle = "black";
-        ctx.fillText(this.text, this.x + this.width/2-this.text.length*7.5, this.y + this.height/2+11);
+        ctx.font ="bold "+ this.size + " " + this.font;
+        ctx.fillStyle = "#D9CBBF";
+        ctx.stroke();
+        ctx.fillText(this.text, this.x + this.width/2-this.text.length*8, this.y + this.height/2+11);
     }
   // Getter
 //   get area() {
@@ -43,5 +44,5 @@ class Rectangle {
             return;
         }
         this.y += 40*parseFloat(this.period/1000);
-    } 
+    }
 }
