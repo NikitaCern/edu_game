@@ -197,9 +197,9 @@ var app = new Vue({
                 var answer = n*m;
               }
               if(chosen_operator == "/"){
-                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var answer = n*this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var  m = answer / n;
+                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var n = m*this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var  answer=n/m;
                 var quest = n+"/"+m+"=";
               }
               console.log(quest);
