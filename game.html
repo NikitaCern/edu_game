@@ -23,9 +23,18 @@
                 <div class="col-md-6 text-left">Uzdevumi minūtē:</div>
                 <div class="col-md-6 text-right">{{ perSecond }}</div>
             </div>
+            <div class="row">
+                <div class="col-md-6 text-left">Laiks, s:</div>
+                <div class="col-md-6 text-right">{{ score.time.text }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-left">Punkti:</div>
+                <div class="col-md-6 text-right">{{ score.rezult.text }}</div>
+            </div>
         </div>
-        <div class="container-fluid" style="height: 80px">
-            <a href="index.html"><img src="assets/refresh.svg" alt="refresh"></a>
+        <div class="container-fluid d-flex flex-wrap justify-content-between" style="height: 80px">
+            <a href="index.html"><img src="assets/back.svg" alt="refresh"></a>
+            <a href="#" onClick="window.location.reload();"><img src="assets/refresh.svg" alt="refresh"></a>
         </div>
     </div>
 </div>

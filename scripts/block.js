@@ -1,5 +1,5 @@
 class Rectangle {
-    constructor(color, width, height, x, y,size,font,text,answer = null) {
+    constructor(color, width, height, x, y,size,font,text,answer = null,description = "") {
         this.height = height;
         this.width = width;
         this.color = color;
@@ -11,8 +11,14 @@ class Rectangle {
         this.x = x;
         this.y = y;
         this.free = true;
+        this.description = description;
     }
     update(ctx) {
+        if(this.description!=""){
+            ctx.font = "20px " + this.font;
+            ctx.fillStyle = "black";
+            ctx.fillText(this.description, this.x + 20, this.y + this.height/2+6);
+        }
         ctx.font = this.size + " " + this.font;
         ctx.fillStyle = "black";
         ctx.fillText(this.text, this.x + this.width/2-this.text.length*7.5, this.y + this.height/2+11);
