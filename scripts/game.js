@@ -30,7 +30,7 @@ var app = new Vue({
     },
     computed: {
         perSecond() {
-            return (parseFloat(this.score.rezult.text)/parseFloat(this.score.time.text)).toFixed(1)
+            return (parseFloat(this.score.rezult.text)*60/parseFloat(this.score.time.text)).toFixed(1)
         }
     },
     beforeUpdate: function(){
