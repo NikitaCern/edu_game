@@ -18,14 +18,12 @@ var app = new Vue({
         },
         height_input:1,
         difficulty_input:1,
-        nr_of_chars:1,
     },
     created: function () {
         var url = new URL(window.location);
         const urlParams = new URLSearchParams(url.search);
         this.height_input = urlParams.get('h');
         this.difficulty_input = urlParams.get('d');
-        this.nr_of_chars = urlParams.get('l');
     },
     computed: {
     },
@@ -171,17 +169,26 @@ var app = new Vue({
                             "+-",
                             "+-*",
                             "+-*/"];
+            var difficulty = [ [1,1],
+                            [1,2],
+                            [2,2],
+                            [3,2],
+                            [3,3]
+                          ];
             for (var i = 0; i < this.height_input; i++) {
-              var chosen_operator = operator[this.difficulty_input-1].charAt(this.getRandomLimits(this.difficulty_input));
+              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(0));
+              var nr_of_chars = difficulty[this.difficulty_input][1];
+              console.log(operator[difficulty[this.difficulty_input][0]])
+              console.log(nr_of_chars)
               if(chosen_operator == "+"){
-                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var n = this.getRandomLimits(Math.pow(10 , nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 var quest = n+"+"+m+"=";
                 var answer = n+m;
               }
               if(chosen_operator == "-"){
-                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var n = this.getRandomLimits(Math.pow(10 , nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 if(n<m){
                   var temp = n;
                   n = m;
@@ -191,15 +198,15 @@ var app = new Vue({
                 var answer = n - m;
               }
               if(chosen_operator == "*"){
-                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
+                var n = this.getRandomLimits(Math.pow(10 , nr_of_chars));
+                var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 var quest = n+"*"+m+"=";
                 var answer = n*m;
               }
               if(chosen_operator == "/"){
-                var n = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var answer = n*this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var  m = answer / n;
+                var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
+                var n = m*this.getRandomLimits(Math.pow(10 , nr_of_chars));
+                var  answer=n/m;
                 var quest = n+"/"+m+"=";
               }
               console.log(quest);

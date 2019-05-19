@@ -15,23 +15,20 @@
         <div class="text">Augstums</div>
         <input type="range" min="1" max="100" value="1" step="1" class="slider"
                 id="height_input" oninput="height_output.value = height_input.value" v-model="height_input">
-        <output id="height_output">1</output>
+        <span class="text_box">{{height_input}}<span>
       </div>
     <br>
       <div class="slider_container">
-        <div class="text">Operātoru Grūtība</div>
-        <input type="range" min="1" max="6" value="1" step="1" class="slider"
-                id="operator_difficulty_input" oninput="operator_difficulty_output.value = operator_difficulty_input.value" v-model="difficulty_input">
-        <output id="operator_difficulty_output">1</output>
+        <div class="text">Sarezgitiba</div>
+        <select name="Sarezgitiba" v-model="difficulty_input" id="difficulty_input">
+          <option value="0">Loti Viegli</option>
+          <option value="1">Viegli</option>
+          <option value="2">Videji</option>
+          <option value="3">Sarezgiti</option>
+          <option value="4">Loti Sarezgiti</option>
+        </select>
       </div>
-    <br>
-      <div class="slider_container">
-        <div class="text">Ciparu Skaits</div>
-        <input type="range" min="1" max="4" value="1" step="1" class="slider"
-                id="size_input" oninput="size_output.value = size_input.value" v-model="nr_of_chars">
-        <output id="size_output">1</output>
-      </div>
-    <a id="go_button" :href="'game.html?h='+height_input+'&d='+difficulty_input+'&l='+nr_of_chars">GO</a>
+    <a id="go_button" :href="'game.html?h='+height_input+'&d='+difficulty_input">GO</a>
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
