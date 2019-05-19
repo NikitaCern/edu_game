@@ -91,7 +91,7 @@ var app = new Vue({
             this.canvas.height = this.page_height;
             this.context = this.canvas.getContext("2d");
             document.getElementById("app").appendChild(this.canvas);
-            this.lable[0] = (new Rectangle("#253840",130,80,this.page_width-170,-80,"20px", "Consolas","Punkti"));
+            this.lable[0] = (new Rectangle("#253840",130,80,this.page_width-170,-80,"20px", "Consolas","Atrisinati"));
             this.score.rezult = (new Rectangle("#586E73",130,100,this.page_width-170,-80,"30px", "Consolas","0"));
             this.lable[1] = (new Rectangle("#253840",130,80,20,-80,"20px", "Consolas","Laiks"));
             this.score.time = (new Rectangle("#586E73",130,100,20,-80,"30px", "Consolas","0"));
@@ -149,14 +149,14 @@ var app = new Vue({
                 this.context.fillStyle = this.lable[1].color;
                 this.context.fillRect(this.lable[1].x, this.lable[1].y, this.lable[1].width, this.lable[1].height);
                 this.lable[1].update(this.context);
-                
+
                 this.context.beginPath();
-                this.context.moveTo(this.page_width/2-306,this.page_height-200);
-                this.context.lineTo(this.page_width/2-306,this.page_height-320);
-                this.context.lineTo(this.page_width/2+306,this.page_height-320);
-                this.context.lineTo(this.page_width/2+306,this.page_height-200);
+                this.context.moveTo(this.page_width/2-305,this.page_height-200);
+                this.context.lineTo(this.page_width/2-305,this.page_height-320);
+                this.context.lineTo(this.page_width/2+305,this.page_height-320);
+                this.context.lineTo(this.page_width/2+305,this.page_height-200);
                 this.context.closePath();
-                this.context.strokeStyle="blue";
+                this.context.strokeStyle="#FF383F";
                 this.context.lineWidth = 15;
                 this.context.stroke();
 
@@ -196,13 +196,13 @@ var app = new Vue({
                         this.tower[i].update(this.context);
                     }
                     this.context.beginPath();
-                    this.context.moveTo(this.page_width/2-307,this.page_height-100);
-                    this.context.lineTo(this.page_width/2-307,this.page_height-220);
-                    this.context.lineTo(this.page_width/2+307,this.page_height-220);
-                    this.context.lineTo(this.page_width/2+307,this.page_height-100);
+                    this.context.moveTo(this.page_width/2-305,this.page_height-200);
+                    this.context.lineTo(this.page_width/2-305,this.page_height-320);
+                    this.context.lineTo(this.page_width/2+305,this.page_height-320);
+                    this.context.lineTo(this.page_width/2+305,this.page_height-200);
                     this.context.closePath();
+                    this.context.strokeStyle="#FF383F";
                     this.context.lineWidth = 15;
-                    this.context.strokeStyle="blue";
                     this.context.stroke();
                 }
             }

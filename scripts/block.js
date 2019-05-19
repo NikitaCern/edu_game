@@ -22,7 +22,7 @@ class Rectangle {
         ctx.font ="bold "+ this.size + " " + this.font;
         ctx.fillStyle = "#D9CBBF";
         ctx.stroke();
-        ctx.fillText(this.text, this.x + this.width/2-this.text.length*8, this.y + this.height/2+11);
+        ctx.fillText(this.text, this.x + this.width/2-this.text.length*5.5, this.y + this.height/2+11);
     }
   // Getter
 //   get area() {
