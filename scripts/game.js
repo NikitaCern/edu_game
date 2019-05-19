@@ -18,11 +18,7 @@ var app = new Vue({
         },
         height_input:1,
         difficulty_input:1,
-<<<<<<< HEAD
-=======
-        nr_of_chars:1,
-        lable: [null,null]
->>>>>>> aa66eebde25941cb1c59bf4fa6f1c64ceb61d821
+        lable:[null,null]
     },
     created: function () {
         var url = new URL(window.location);
@@ -209,7 +205,7 @@ var app = new Vue({
                             [3,3]
                           ];
             for (var i = 0; i < this.height_input; i++) {
-              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(0));
+              var chosen_operator = operator[difficulty[this.difficulty_input][0]].charAt(this.getRandomLimits(difficulty[this.difficulty_input][0]));
               var nr_of_chars = difficulty[this.difficulty_input][1];
               console.log(operator[difficulty[this.difficulty_input][0]])
               console.log(nr_of_chars)
@@ -237,13 +233,8 @@ var app = new Vue({
                 var answer = n*m;
               }
               if(chosen_operator == "/"){
-<<<<<<< HEAD
                 var m = this.getRandomLimits(Math.pow(10 , nr_of_chars));
                 var n = m*this.getRandomLimits(Math.pow(10 , nr_of_chars));
-=======
-                var m = this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
-                var n = m*this.getRandomLimits(Math.pow(10 , this.nr_of_chars));
->>>>>>> aa66eebde25941cb1c59bf4fa6f1c64ceb61d821
                 var  answer=n/m;
                 var quest = n+"/"+m+"=";
               }
