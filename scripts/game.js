@@ -19,6 +19,7 @@ var app = new Vue({
         height_input:1,
         difficulty_input:1,
         lable: [null,null],
+        myAnswer: "",
         description: "Ievadiet naturālu skaitli un spiediet Enter, lai atbildētu uz zemāko uzdevumu"
     },
     created: function () {
@@ -61,7 +62,7 @@ var app = new Vue({
         },
         evaluate: function(){
             var clockLocal = new Date();
-            if(this.tower[1].answer==this.tower[0].text){
+            if(this.tower[1].answer==this.myAnswer){
                 this.score.rezult.text=(parseInt(this.score.rezult.text)+1).toString();
                 this.explosion();
                 this.tower[0].text="";
@@ -99,7 +100,7 @@ var app = new Vue({
             this.score.rezult = (new Rectangle("green",100,160,this.page_width-120,-80,"30px", "Consolas","0"));
             this.lable[1] = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","Laiks"));
             this.score.time = (new Rectangle("green",100,160,20,-80,"30px", "Consolas","0"));
-            this.tower.push(new Rectangle("green",this.page_width,100,0,this.page_height-100,"30px", "Consolas","",null,this.description));
+            this.tower.push(new Rectangle("green",this.page_width,100,0,this.page_height-100,"30px", "Consolas",""));
             this.frameNo = 0;
             this.recieve();
             this.interval = setInterval(this.updateGameArea, 10);
@@ -153,6 +154,17 @@ var app = new Vue({
                 this.context.fillStyle = this.lable[1].color;
                 this.context.fillRect(this.lable[1].x, this.lable[1].y, this.lable[1].width, this.lable[1].height);
                 this.lable[1].update(this.context);
+                
+                this.context.beginPath();
+                this.context.moveTo(this.page_width/2-307,this.page_height-100);
+                this.context.lineTo(this.page_width/2-307,this.page_height-220);
+                this.context.lineTo(this.page_width/2+307,this.page_height-220);
+                this.context.lineTo(this.page_width/2+307,this.page_height-100);
+                this.context.closePath();
+                this.context.strokeStyle="blue";
+                this.context.lineWidth = 15;
+                this.context.stroke();
+
                 if(this.tower.length==1) this.pause = true;
             }
             if(this.reverse==true){
@@ -188,7 +200,20 @@ var app = new Vue({
                         this.context.fillRect(this.tower[i].x, this.tower[i].y, this.tower[i].width, this.tower[i].height);
                         this.tower[i].update(this.context);
                     }
+                    this.context.beginPath();
+                    this.context.moveTo(this.page_width/2-307,this.page_height-100);
+                    this.context.lineTo(this.page_width/2-307,this.page_height-220);
+                    this.context.lineTo(this.page_width/2+307,this.page_height-220);
+                    this.context.lineTo(this.page_width/2+307,this.page_height-100);
+                    this.context.closePath();
+                    this.context.lineWidth = 15;
+                    this.context.strokeStyle="blue";
+                    this.context.stroke();
                 }
+            }
+            if(this.reverse==false && this.pause==true){
+                this.interval = null;
+                this.clear();
             }
         },
         getRandomLimits: function(max){

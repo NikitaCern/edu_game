@@ -174,3 +174,9 @@ input[type=range]:focus::-ms-fill-upper {
   border: 2px solid rgba(80, 19, 200, 0.6);
 }
 [v-cloak] {display: none}
+.myAnswer{
+  position: absolute;
+  bottom: 30px;
+  left: calc(50% - 50px);
+  width: 100px;
+}
